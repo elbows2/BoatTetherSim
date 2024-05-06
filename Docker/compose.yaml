@@ -1,0 +1,25 @@
+services:
+  boat_common:
+    container_name: common
+    build: Nodes/Common/
+
+  boat_server:
+    container_name: server
+    build: Nodes/Server/
+    stdin_open: true
+    tty: true
+    ports:
+      - 10000:10000
+    depends_on:
+      - boat_common
+  boat_controller:
+    image: boat_common
+    container_name: controller
+    stdin_open: true
+    tty: true
+    depends_on:
+      - boat_common
+    volumes:
+      - type: bind
+        source: ./Nodes/Controller/src
+        target: /home/ros_ws/src/
