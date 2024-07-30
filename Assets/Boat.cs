@@ -32,7 +32,7 @@ public class Boat : MonoBehaviour
     //Command Expects a Float between -1 and 1 for each value describing the range between full reverse
     //and full forward.
     public void Command(float fwd, float yaw ) {
-        
+        // Debug.Log("Forward: " + fwd + " Yaw: " + yaw);
         fwd = Math.Clamp(fwd, -1f, 1f);
         yaw = Math.Clamp(yaw,-1f,1f);
         cmdForce = new Vector3(fwd * maxForce, 0, 0);

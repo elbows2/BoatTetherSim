@@ -20,6 +20,7 @@ public class ROSController : MonoBehaviour
 
     void CommandCallback(Command cmd)
     {
+        // Debug.Log("ROS: Command " + cmd);
        boat.Command(cmd.vel, cmd.yaw);
        tether.Command(cmd.winch);
     }

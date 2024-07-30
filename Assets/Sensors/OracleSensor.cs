@@ -7,11 +7,14 @@ using Imu = RosMessageTypes.Sensor.ImuMsg;
 using RosMessageTypes.Geometry;
 using RosMessageTypes.Std;
 
+
 public class OracleSensor : MonoBehaviour {
     
     Rigidbody rb;
     ROSConnection ros;
 
+
+    public EpisodeManager episode;
     public string imuTopic = "default/imu";
     public string poseTopic = "default/pose";
     public string velocityTopic = "default/vel";
@@ -61,6 +64,7 @@ public class OracleSensor : MonoBehaviour {
          
         if (timeElapsed > publishPeriod) {
             header = new HeaderMsg();
+            header.frame_id = "" + EpisodeManager.Instance.episodeNumber;
             orientation = rb.transform.rotation.To<FLU>();
             angularVel = rb.angularVelocity.To<FLU>();
             acceleration = (rb.velocity - previousVelocity)/timeElapsed;

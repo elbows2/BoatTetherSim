@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class Tether : MonoBehaviour
     public int maxLinks = 25;
     public int minLinks = 1;
     public float winchSpeed = 0.0f;
+    public float maxWinchSpeed = 2.0f;
 
     public Rigidbody fixedPoint;
     public GameObject ropeSegment;
@@ -20,6 +22,7 @@ public class Tether : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Tether: Start");
         tetherSegments = new LinkedList<GameObject>();
         CreateRope();
         
@@ -41,6 +44,7 @@ public class Tether : MonoBehaviour
 
     void CreateRope()
     {
+        Debug.Log("Tether: CreateRope");
         Rigidbody prevRb = fixedPoint;        
         for (int i = 0; i < nLinks; i++) {
             GameObject link = Instantiate(ropeSegment);
@@ -59,6 +63,7 @@ public class Tether : MonoBehaviour
 
     public void addLink()
     {
+        Debug.Log("Tether: addLink");
         if (nLinks >= maxLinks) {
             return;
         }
@@ -78,6 +83,7 @@ public class Tether : MonoBehaviour
 
     public void removeLink()
     {
+        Debug.Log("Tether: removeLink");
         if (nLinks <= minLinks) {
             return;
         }
@@ -90,7 +96,7 @@ public class Tether : MonoBehaviour
     }
 
     public void Command(float cmd) {
-        this.winchSpeed = cmd;
+        this.winchSpeed = Math.Clamp(cmd, -maxWinchSpeed, maxWinchSpeed);
     }
 
     public GameObject[] GetSegments() {

@@ -250,11 +250,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ac9545580701842a7cb8fcefd26427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nLinks: 2
+  nLinks: 10
   linkLength: 0.125
   maxLinks: 25
   minLinks: 1
-  winchSpeed: 1
+  winchSpeed: 0
+  maxWinchSpeed: 2
   fixedPoint: {fileID: 600280471}
   ropeSegment: {fileID: 9145019588486688678, guid: 9d2b563b0cce2cd4e9a71543344437cb, type: 3}
   endEffector: {fileID: 1555485102}
@@ -302,6 +303,8 @@ GameObject:
   - component: {fileID: 227817507}
   - component: {fileID: 227817506}
   - component: {fileID: 227817508}
+  - component: {fileID: 227817509}
+  - component: {fileID: 227817510}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -343,12 +346,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227817503}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e71309866fdaa00479a1b5b7dced3888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Boat
+  saveServiceName: save
+  saveBaseDir: data
 --- !u!114 &227817507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +423,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 322142383}
+--- !u!114 &227817509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227817503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e6806b8df5e654ea3d872f346b90a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Boat
+  resetServiceName: /sim/reset
+  saveServiceName: save
+  saveBaseDir: data/
+--- !u!114 &227817510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227817503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0c735ff6bcfb247afbad2cc30015da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  episodeNumber: 0
+  timeScale: 1
 --- !u!1 &322142383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1167,102 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1202949430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1202949432}
+  - component: {fileID: 1202949431}
+  m_Layer: 0
+  m_Name: EnvironmentEndpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1202949431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202949430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc1d29ce9c96b1449f0804cae8cef5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serviceName: /sim/init
+  tether: {fileID: 113571560}
+  boat: {fileID: 0}
+  end: {fileID: 0}
+  maxSimSpeed: 20
+--- !u!4 &1202949432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202949430}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1261475901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1261475903}
+  - component: {fileID: 1261475902}
+  m_Layer: 0
+  m_Name: ROSController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1261475902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261475901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c373cb12af260574cba8b85dd693bbb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscriptionTopic: /sim/cmd
+  boat: {fileID: 1316473753}
+  tether: {fileID: 113571560}
+--- !u!4 &1261475903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261475901}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1316473747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,6 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8567a90f79c751b449a496b83e51a32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  episode: {fileID: 227817510}
   imuTopic: boat/imu
   poseTopic: boat/pose
   velocityTopic: boat/vel
@@ -1512,6 +1644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8567a90f79c751b449a496b83e51a32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  episode: {fileID: 227817510}
   imuTopic: end/imu
   poseTopic: end/pose
   velocityTopic: end/vel
@@ -1826,7 +1959,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 41
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1852,13 +1985,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073895215}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalRotation: {x: 0, y: -0.9914449, z: 0.13052616, w: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: -180, z: 0}
 --- !u!1 &2084269967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,3 +2108,5 @@ SceneRoots:
   - {fileID: 2084269971}
   - {fileID: 322142386}
   - {fileID: 227817505}
+  - {fileID: 1261475903}
+  - {fileID: 1202949432}
