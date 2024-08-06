@@ -14,7 +14,7 @@ public class RemoteReset : MonoBehaviour
     public string saveBaseDir = "data/";
     ROSConnection ros;
 
-    void Start()
+    void Awake()
     {
         ros = ROSConnection.GetOrCreateInstance();
         if (ros != null) {
